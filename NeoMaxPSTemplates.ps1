@@ -132,6 +132,23 @@ function Convert-FirstCharToUpper
     $text.substring(0,1).toupper()+$text.substring(1)
 }
 
+function Format-Date
+{
+    param($date, $format)
+    $date = [datetime]$date
+    $date.ToString($format)
+}
+
+function Split-Line
+{
+    param($line, $limit, $separator)
+    if($line.length -gt $limit)
+    {
+        $line = $line.SubString(0, $limit) + $separator + (Split-line -line $line.SubString($limit) -limit $limit -separator $separator )
+    }
+    $line
+}
+
 
 #$template = '@$Propiedad varchar'
 #$template = Get-ContentFromFile $file
