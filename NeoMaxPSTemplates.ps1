@@ -46,6 +46,21 @@ function Get-ContentFromFile
 	{	$content	}
 }
 
+function Get-TemplatesFromFile
+{
+    param($filePath)
+    $content = Get-ContentFromFile -filePath $filePath
+    $contentParts = $content -split "`r`n--/--`r`n"
+    foreach($contentPart in $contentParts)
+    {
+        $lines = $contentPart -split "`r`n"
+        $json = ConvertFrom-Json $lines[0]
+        $lines = $lines[1..($lines.Length-1)]
+        $json.content = $lines -join "`r`n"
+        $json
+    }
+}
+
 #endregion
 
 #region data
