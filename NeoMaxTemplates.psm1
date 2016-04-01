@@ -1,5 +1,7 @@
 #get-verb
 
+New-Variable -Name module -Value 'neomax-templates' -Scope Global -Force
+
 #region base functions
 
 function Get-FromClipboard
@@ -181,18 +183,20 @@ $formatedTemplate = Format-Template $template
 Format-DataFilterExpand -template '$propertyrelational' -filter '$value -eq "3"'
 #>
 
-function Get-Help
+function Get-Help-Templates
 {
-    Write-Host "
+    Write-Host '
 
     1. Get-DataFromClipboard
     2. Format-Data (column template requerida)
 
     1. Get-DataFromClipboard
     2. $file = Select-FilePath
-    3. $template = Get-ContentFromFile $file
+    3. $template = Get-ContentFromFile $file (escribirla en la consola por lo regular fallar por "" y otros caracteres especiales)
     4. Format-Data $template
 
 
-    "
+    '
 }
+
+Export-ModuleMember *
