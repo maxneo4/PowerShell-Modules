@@ -1,4 +1,5 @@
 #get-verb
+#Set-ExecutionPolicy Unrestricted
 
 New-Variable -Name module -Value 'neomax-templates' -Scope Global -Force
 
