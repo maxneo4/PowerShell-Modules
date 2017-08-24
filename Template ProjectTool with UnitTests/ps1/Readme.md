@@ -1,4 +1,4 @@
-## Manera de ejecutar las pruebas Initarias##
+## Manera de ejecutar las pruebas Unitarias##
 
 1. Instalar http://psget.net/ `(new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex`
 2. Abrir consola de powershell como administrador, luego ejecutar (*Verificar get-executionPolicy sea 'Unrestricted' en caso contrario utilizar Set-ExecutionPolicy Unrestricted*)
