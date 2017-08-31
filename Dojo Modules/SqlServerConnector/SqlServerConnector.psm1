@@ -27,6 +27,7 @@ Function ConvertTo-Objects
 				$obj = new-Object PSObject
 				#Listara todos los campos que vienen en la consulta			
 				$obj | Add-Member Noteproperty N $count
+				$obj | Add-Member Noteproperty dataRow $item
 				for($i = 0; $i -lt $item.FieldCount; $i++)	
 				{	$obj | Add-Member Noteproperty $item.GetName($i) $item[$i]	}			
 				$arr += $obj
