@@ -1,0 +1,3 @@
+- Sacar modules de carpetas
+- En aplicaciones crear scripts CreateReleaseXTool para copiar lo usado y necesario
+- Un .bat para poder llevarlos a .exe
