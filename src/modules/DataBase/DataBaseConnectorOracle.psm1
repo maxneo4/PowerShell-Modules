@@ -1,7 +1,7 @@
 $root = $PSScriptRoot
 
 Add-Type -path "$root\Oracle.ManagedDataAccess.dll"
-Import-Module DataBaseCommon -Force
+Import-Module "$root/DataBaseCommon" -Force
 
 function Open-OracleConnection
 {	
