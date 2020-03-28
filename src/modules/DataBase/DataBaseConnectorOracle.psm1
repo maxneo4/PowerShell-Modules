@@ -27,6 +27,10 @@ function Select-QueryOracle
 {	
 	param($query, $connectionString, [switch]$asResultDataReader, [switch]$ManageConnection)
 	
+	if($ManageConnection -and $asResultDataReader){
+		Write-Error "Cannot use manageConnection and asResultDataReader at same"
+	}
+
 	$query = Convertto-OracleQueryFromSqlServerQuery $query
 	if($ManageConnection) { Open-OracleConnection $connectionString }
 	$query = new-object Oracle.ManagedDataAccess.Client.OracleCommand($query, $script:connectionOracle)	

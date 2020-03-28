@@ -1,4 +1,5 @@
-Import-Module DataBaseCommon -Force
+$root = $PSScriptRoot
+Import-Module "$root/DataBaseCommon" -Force
 
 function Open-SqlServerConnection
 {	
@@ -24,6 +25,10 @@ function Select-QuerySqlServer
 	
 	param($query, $connectionString, [switch]$asResultDataReader, [switch]$ManageConnection)
 	
+	if($ManageConnection -and $asResultDataReader){
+		Write-Error "Cannot use manageConnection and asResultDataReader at same"
+	}
+
 	if($ManageConnection) { Open-SqlServerConnection $connectionString }
 	$command = new-object system.data.sqlclient.sqlcommand
 	$command.Connection = $script:connectionSqlServer	

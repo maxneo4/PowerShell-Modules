@@ -11,7 +11,7 @@ Function ConvertTo-Objects
 	param([Parameter(ValueFromPipeline=$true, Mandatory=$true)][Object[]]$rdr)
 	BEGIN
 	{
-		$arr = @()	
+		$arr = [System.Collections.ArrayList]@()	
 		$count = 0
 	}
 	
@@ -26,26 +26,30 @@ Function ConvertTo-Objects
 				$count++
 				$obj = @{ N = $count}				
 				for($i = 0; $i -lt $item.FieldCount; $i++)	
-				{	$obj.Add($item.GetName($i), $item[$i])	}			
-				$arr += $obj
+				{	
+					$obj.Add($item.GetName($i), $item[$i])
+				}	
+
+				$psobj = New-Object PSCustomObject -Property $obj
+				$arr.Add($psobj) | Out-Null
 			}
 		}	
 	}
 	END
 	{
-		$arr
+		return $arr
 	}
 }
 
 function Get-InsertScript($object, $table)
 {
-    $columns = @()
-    $values = @()
+    $columns = [System.Collections.ArrayList]@()
+    $values = [System.Collections.ArrayList]@()
     for($i = 0; $i -lt $object.dataRow.FieldCount; $i++){
       $colunmName = $object.dataRow.GetName($i) 
       $value = $object.$colunmName
-      $columns += $colunmName
-      $values += "'$value'"
+      $columns.Add($colunmName) | Out-Null
+      $values.Add("'$value'") | Out-Null
      } 
     
    
