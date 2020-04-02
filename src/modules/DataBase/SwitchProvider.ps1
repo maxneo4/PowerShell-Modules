@@ -1,7 +1,8 @@
 $rootSwitchProvider = $PSScriptRoot
 
-function set-provider($providerType)
+function set-provider($connectionString)
 {
+    $providerType = if($connectionString.Contains("Initial Catalog")){ 'sqlserver'} else { 'oracle' }
     switch($providerType)
     {
         'oracle' { 

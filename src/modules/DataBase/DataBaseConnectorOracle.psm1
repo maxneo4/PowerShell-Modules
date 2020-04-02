@@ -38,7 +38,7 @@ function Select-QueryOracle
 	$result = $null
 	if($asResultDataReader)
 		{ $result = $resultDataReader } 
-	else 
+	elseif($resultDataReader) 
 		{
 			 $result = $resultDataReader | ConvertTo-Objects 
 			 $resultDataReader.Close()
