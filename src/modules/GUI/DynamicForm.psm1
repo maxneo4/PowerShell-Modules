@@ -25,7 +25,9 @@ function show-uiFromJson
     {
         Write-Error $result.error
     }
-    return $result.out
+    if($result.out -eq 'CANCELED')
+    { return $result.out }
+    return $result.out | ConvertFrom-Json
 }
 
 function show-ui
