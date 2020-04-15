@@ -30,8 +30,9 @@ Function ConvertTo-Objects
 					$obj.Add($item.GetName($i), $item[$i])
 				}	
 
-				$psobj = New-Object PSCustomObject -Property $obj
-				$arr.Add($psobj) | Out-Null
+				$psobj = [PSCustomObject]$obj
+				[void]$arr.Add($psobj)
+                if( ($arr.Count % 500) -eq 0){ Write-Host $arr.Count -ForegroundColor DarkYellow }
 			}
 		}	
 	}
